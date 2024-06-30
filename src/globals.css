@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'PlusJakartaSans';
+    src: url('/public/fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900; /* Supports weights from 100 to 900 */
+    font-style: normal;
+}
+
+:root {
+    /* Colors */
+
+    --lime: hsl(61, 70%, 52%);
+
+    --slate900: hsl(202, 55%, 16%);
+    --slate700: hsl(200, 24%, 40%);
+    --slate500: hsl(200, 26%, 54%);
+    --slate300: hsl(203, 41%, 72%);
+    --slate100: hsl(202, 86%, 94%);
+
+    --white: hsl(0, 0%, 100%);
+
+    --red: hsl(4, 69%, 50%);
+
+
+    /* Typography */
+    .preset-1, .preset-2, .preset-3 {
+        line-height: 125%;
+        letter-spacing: -1px;
+    }
+
+    .preset-1 {
+        font-size: 56px;
+    }
+
+    .preset-2 {
+        font-size: 24px;
+    }
+
+    .preset-3 {
+        font-size: 18px;
+    }
+
+    .preset-4, .preset-5 {
+        line-height: 150%;
+        letter-spacing: 0px;
+    }
+
+    .preset-4 {
+        font-size: 16px;
+    }
+
+    .preset-5 {
+        font-size: 14px;
+    }
+
+
+}
