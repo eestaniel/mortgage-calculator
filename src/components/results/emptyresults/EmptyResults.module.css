@@ -18,3 +18,17 @@
     }
 
 }
+
+@media screen and (min-width: 576px) {
+    .results {
+        border-radius: 0 0 1.5rem 1.5rem;
+        padding: 2.5rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .results {
+        height: 606px;
+        border-radius: 0 1.5rem 1.5rem 5rem;
+    }
+}

@@ -31,12 +31,15 @@ const ValidResults:React.FC<ValidResultsProps> = ({results, mortgageAmount}) => 
                 <p className={`preset-4`}>Your results are shown below based on the information you provided. To adjust the results, edit the form and click “calculate repayments” again.</p>
             </div>
             <div className={styles.results}>
-                <div className={styles.monthly_group}>
-                    <h4>Your monthly repayments</h4>
-                    <p className={`preset-2`}>£ {formattedMonthlyRepayment}</p>
-                    <hr/>
-                    <h4>Total you'll repay over the term</h4>
-                    <p className={`preset-2`}>£ {formattedTotalAmount}</p>
+                <div className={styles.result_group}>
+                    <h4 className={`preset-4`}>Your monthly repayments</h4>
+                    <p className={`preset-1`}>£ {formattedMonthlyRepayment}</p>
+
+                </div>
+                <hr/>
+                <div className={styles.result_group}>
+                    <h4 className={`preset-4`}>Total you'll repay over the term</h4>
+                    <p className={`preset-2 ${styles.total_amount}`}>£ {formattedTotalAmount}</p>
                 </div>
 
             </div>

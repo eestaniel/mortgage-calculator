@@ -18,6 +18,10 @@
     &:focus-within {
         border-color: var(--slate900);
     }
+    
+    & :hover {
+        cursor: pointer !important;
+    }
 }
 
 .input {
