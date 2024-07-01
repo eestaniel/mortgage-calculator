@@ -17,7 +17,7 @@ const ValidResults:React.FC<ValidResultsProps> = ({results, mortgageAmount}) => 
         // add comma to the monthly repayment value
         setFormattedMonthlyRepayment(results.monthlyRepayment.toLocaleString());
 
-        // calulate the total amount to be repaid and format it
+        // calculate the total amount to be repaid and format it
         // remove the comma from the mortgage amount
         const mortgageAmountNumber = parseFloat(mortgageAmount.replace(/,/g, ''));
         const totalAmount = mortgageAmountNumber + results.totalInterest;
