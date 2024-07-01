@@ -7,9 +7,11 @@ interface ValidResultsProps {
         totalInterest: number;
     },
     mortgageAmount: string;
+    selectedOption: string;
+
 }
 
-const ValidResults:React.FC<ValidResultsProps> = ({results, mortgageAmount}) => {
+const ValidResults:React.FC<ValidResultsProps> = ({results, mortgageAmount, selectedOption}) => {
     const [formattedMonthlyRepayment, setFormattedMonthlyRepayment] = useState('');
     const [formattedTotalAmount, setFormattedTotalAmount] = useState('');
 
@@ -25,7 +27,13 @@ const ValidResults:React.FC<ValidResultsProps> = ({results, mortgageAmount}) => 
         // remove the comma from the mortgage amount
         // make sure the total amount has 2 decimal places
         const mortgageAmountNumber = parseFloat(mortgageAmount.replace(/,/g, ''));
-        const totalAmount = mortgageAmountNumber + results.totalInterest;
+        let totalAmount;
+        if (selectedOption === 'Repayment') {
+            totalAmount = mortgageAmountNumber + results.totalInterest;
+        } else {
+            totalAmount = results.totalInterest;
+        }
+
         const formattedTotalAmount = totalAmount.toLocaleString(undefined, {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,

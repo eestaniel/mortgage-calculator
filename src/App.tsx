@@ -91,7 +91,7 @@ const App: React.FC = () => {
                     </div>
                 </form>
                 <div className={styles.results}>
-                    {!results ? <EmptyResults/> : <ValidResults results={results} mortgageAmount={mortgageAmount}/>}
+                    {!results ? <EmptyResults/> : <ValidResults results={results} mortgageAmount={mortgageAmount} selectedOption={selectedOption}/>}
                 </div>
             </div>
         </main>
