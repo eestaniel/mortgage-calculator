@@ -17,6 +17,7 @@
 
     &:focus-within {
         border-color: var(--slate900);
+        background-color: var(--lime);
     }
     
     & :hover {
