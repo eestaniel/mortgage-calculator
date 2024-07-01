@@ -13,7 +13,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ onClick }) => {
                 onClick={onClick}
             >
                 <span>
-                    <img src="images/icon-calculator.svg" alt="calculator" />
+                    <img src="/public/images/icon-calculator.svg" alt="calculator" />
                     Calculate Repayments
                 </span>
             </button>
