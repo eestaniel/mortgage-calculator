@@ -14,14 +14,23 @@ const ValidResults:React.FC<ValidResultsProps> = ({results, mortgageAmount}) => 
     const [formattedTotalAmount, setFormattedTotalAmount] = useState('');
 
     useEffect(() => {
-        // add comma to the monthly repayment value
-        setFormattedMonthlyRepayment(results.monthlyRepayment.toLocaleString());
+        // add comma to the monthly repayment value and make sure it has 2 decimal places
+        const formattedMonthlyRepayment = results.monthlyRepayment.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        });
+        setFormattedMonthlyRepayment(formattedMonthlyRepayment);
 
         // calculate the total amount to be repaid and format it
         // remove the comma from the mortgage amount
+        // make sure the total amount has 2 decimal places
         const mortgageAmountNumber = parseFloat(mortgageAmount.replace(/,/g, ''));
         const totalAmount = mortgageAmountNumber + results.totalInterest;
-        setFormattedTotalAmount(totalAmount.toLocaleString());
+        const formattedTotalAmount = totalAmount.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        });
+        setFormattedTotalAmount(formattedTotalAmount);
     }, [results]);
 
     return (
