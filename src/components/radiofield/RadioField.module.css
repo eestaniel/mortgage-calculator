@@ -7,8 +7,12 @@
     cursor: pointer;
     position: relative;
     padding: 0.875rem 1.125rem;
+    transition: border-color 0.2s;
 
-    &:hover,
+    &:hover {
+        border: 1px solid var(--lime);
+    }
+
     &:focus-within {
         border: 1px solid var(--lime);
     }
@@ -20,10 +24,13 @@
 }
 
 .radio_input {
-    opacity: 0; /* Use opacity instead of display: none to keep it focusable */
-    position: absolute; /* Position it so it doesn't affect layout */
-    width: 1px;
-    height: 1px;
+    position: absolute;
+    opacity: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
 }
 
 .radio_custom {
@@ -35,6 +42,7 @@
     margin-right: 0.891rem;
     position: relative;
     box-sizing: border-box;
+    transition: border-color 0.2s, background-color 0.2s;
 }
 
 .radio_input:checked + .radio_custom {
@@ -52,6 +60,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s;
 }
 
 .radio_input:checked + .radio_custom::after {
@@ -60,4 +69,5 @@
 
 .radio_label {
     cursor: pointer;
+    flex-grow: 1;
 }
