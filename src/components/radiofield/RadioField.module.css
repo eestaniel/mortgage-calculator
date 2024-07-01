@@ -7,6 +7,10 @@
     cursor: pointer;
     position: relative;
     padding: 0.875rem 1.125rem;
+
+    &:hover {
+        border: 1px solid var(--lime);
+    }
 }
 
 .radio_input {
