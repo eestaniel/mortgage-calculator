@@ -65,6 +65,10 @@ form {
         background-color: var(--slate100);
         padding: 2.5rem;
     }
+    .content {
+        box-shadow: 0 2rem 4rem 0 hsla(202, 55%, 16%, 10%);
+        border-radius: 1.5rem;
+    }
     main {
         border-radius: 1.5rem;
     }
@@ -106,6 +110,7 @@ form {
 
     form {
         width: 50%;
+        gap: 2.5rem;
     }
 
     .results {
