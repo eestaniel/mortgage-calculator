@@ -34,7 +34,6 @@ const App = () => {
     }
 
     const handleOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log('e.target.value', e.target.name);
         setSelectedOption(e.target.name);
     };
 
