@@ -8,7 +8,8 @@
     position: relative;
     padding: 0.875rem 1.125rem;
 
-    &:hover {
+    &:hover,
+    &:focus-within {
         border: 1px solid var(--lime);
     }
 }
@@ -19,7 +20,10 @@
 }
 
 .radio_input {
-    display: none;
+    opacity: 0; /* Use opacity instead of display: none to keep it focusable */
+    position: absolute; /* Position it so it doesn't affect layout */
+    width: 1px;
+    height: 1px;
 }
 
 .radio_custom {
@@ -31,7 +35,6 @@
     margin-right: 0.891rem;
     position: relative;
     box-sizing: border-box;
-
 }
 
 .radio_input:checked + .radio_custom {
@@ -49,16 +52,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-
 }
 
 .radio_input:checked + .radio_custom::after {
     transform: translate(-50%, -50%) scale(1);
-
 }
 
 .radio_label {
     cursor: pointer;
 }
-
-
