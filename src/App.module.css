@@ -93,9 +93,24 @@ form {
     main {
         min-height: revert;
         flex-direction: row;
-        max-height: 606px;
+        min-height: 606px;
         max-width: 1008px;
         justify-content: center;
         align-items: center;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    form {
+        width: 50%;
+    }
+
+    .results {
+        flex-grow: 1;
+        width: 50%;
     }
 }

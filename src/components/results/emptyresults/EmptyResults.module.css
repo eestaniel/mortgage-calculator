@@ -28,7 +28,9 @@
 
 @media screen and (min-width: 1024px) {
     .results {
-        height: 606px;
+        min-height: 606px;
         border-radius: 0 1.5rem 1.5rem 5rem;
+        height: 100%;
+        flex-grow: 1;
     }
 }
