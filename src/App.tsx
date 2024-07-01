@@ -1,14 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
+import styles from './App.module.css';
+
 import NumberField from './components/numberfield/NumberField.tsx';
 import RadioField from './components/radiofield/RadioField.tsx';
 import CustomButton from "./components/custombutton/CustomButton.tsx";
-import styles from './App.module.css';
+import EmptyResults from "./components/results/emptyresults/EmptyResults.tsx"
+import ValidResults from "./components/results/validresults/ValidResults.tsx";
+import useMortgageCalculator from "./hooks/useMortgageCalculator.ts";
+import useMortgageValidation from "./hooks/useMortgageValidation.ts";
+
 
 const App = () => {
     const [mortgageAmount, setMortgageAmount] = useState('');
     const [mortgageTerm, setMortgageTerm] = useState('');
     const [interestRate, setInterestRate] = useState('');
     const [selectedOption, setSelectedOption] = useState('');
+    const {results, calculateRepayment, calculateInterestOnly, resetResults} = useMortgageCalculator();
+    const {validateFields} = useMortgageValidation();
     const [errors, setErrors] = useState({
         mortgageAmount: '',
         mortgageTerm: '',
@@ -16,9 +24,15 @@ const App = () => {
         selectedOption: '',
     });
 
+    // Add useEffect to log results when they update
     useEffect(() => {
-
-    }, [errors]);
+        console.log(results)
+        if (results) {
+            console.log('Results updated:', results);
+            console.log('Monthly Repayment:', results.monthlyRepayment);
+            console.log('Total Interest:', results.totalInterest);
+        }
+    }, [results]); // Depend on results
 
     const clearAll = () => {
         setMortgageAmount('');
@@ -31,6 +45,8 @@ const App = () => {
             interestRate: '',
             selectedOption: '',
         });
+        // reset results
+        resetResults()
     }
 
     const handleOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,42 +55,24 @@ const App = () => {
 
     const handleSubmission = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const fields = {mortgageAmount, mortgageTerm, interestRate, selectedOption};
+        const validationErrors = validateFields(fields);
+        setErrors(validationErrors); // Update local state with validation errors
 
-        let newErrors = { ...errors };
 
-        if (mortgageAmount === '') {
-            newErrors.mortgageAmount = 'This field is required';
+        if (Object.values(validationErrors).every((field) => field === '')) {
+            console.log('Form is valid. Submitting...');
+            const amount = parseFloat(mortgageAmount.replace(/,/g, ''));
+            const term = parseInt(mortgageTerm);
+            const rate = parseFloat(interestRate);
+            if (selectedOption === 'Repayment') {
+                calculateRepayment(amount, term, rate);
+            } else if (selectedOption === 'Interest Only') {
+                calculateInterestOnly(amount, rate, term);
+            }
         } else {
-            newErrors.mortgageAmount = '';
-        }
-
-        if (mortgageTerm === '') {
-            newErrors.mortgageTerm = 'This field is required';
-        } else {
-            newErrors.mortgageTerm = '';
-        }
-
-        if (interestRate === '') {
-            newErrors.interestRate = 'This field is required';
-        } else {
-            newErrors.interestRate = '';
-        }
-
-        if (selectedOption === '') {
-            newErrors.selectedOption = 'Please select an option';
-        } else {
-            newErrors.selectedOption = '';
-        }
-
-        setErrors(newErrors);
-
-        if (Object.values(newErrors).some((error) => error !== '')) {
-            return;
-        }
-
-        else {
-            console.log('submitting form');
-
+            console.log(validationErrors)
+            console.log('Form is invalid. Cannot submit.');
         }
 
     };
@@ -136,15 +134,13 @@ const App = () => {
                             checked={selectedOption === 'Interest Only'}
                             onChange={handleOptionChange}
                         />
-                        {errors.selectedOption && selectedOption === '' && <p className={styles.error_message}>{errors.selectedOption}</p>}
+                        {errors.selectedOption && selectedOption === '' &&
+                            <p className={styles.error_message}>{errors.selectedOption}</p>}
                     </div>
-                    <CustomButton onClick={(e) => handleSubmission(e as unknown as React.FormEvent<HTMLFormElement>)} />                </div>
+                    <CustomButton onClick={(e) => handleSubmission(e as unknown as React.FormEvent<HTMLFormElement>)}/>
+                </div>
             </form>
-            <div className={styles.results}>
-                <img src="/public/images/illustration-empty.svg" alt="illustration-empty" />
-                <h3 className={`preset-2`}>Results shown here</h3>
-                <p className={`preset-4`}>Complete the form and click “calculate repayments” to see what your monthly repayments would be.</p>
-            </div>
+            {!results ? <EmptyResults/> : <ValidResults results={results} mortgageAmount={mortgageAmount}/>}
         </main>
     );
 };
