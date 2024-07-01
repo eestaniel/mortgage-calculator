@@ -41,7 +41,9 @@ export const formatForDisplay = (input: string, numberType: 'int' | 'float'): st
 
 // Remove .00 or .0 for editing
 export const formatForEditing = (input: string): string => {
-    if (input.endsWith('.00')) {
+    if (input === '0.00') {
+        return '';
+    } else if (input.endsWith('.00')) {
         return input.slice(0, -3);
     } else if (input.match(/\.\d0$/)) {
         return input.slice(0, -1);
