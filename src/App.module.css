@@ -3,6 +3,7 @@ main {
     display: flex;
     flex-direction: column;
     background-color: var(--white);
+
 }
 form {
     display: flex;

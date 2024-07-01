@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-interface CalculationResults {
+export interface CalculationResults {
     monthlyRepayment: number;
     totalInterest: number;
 }
