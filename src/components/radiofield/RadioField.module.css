@@ -13,6 +13,11 @@
     }
 }
 
+.checked {
+    background-color: hsla(61, 70%, 52%, 15%);
+    border-color: var(--lime);
+}
+
 .radio_input {
     display: none;
 }
@@ -44,12 +49,16 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
+
 }
 
 .radio_input:checked + .radio_custom::after {
     transform: translate(-50%, -50%) scale(1);
+
 }
 
 .radio_label {
     cursor: pointer;
 }
+
+
